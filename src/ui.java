@@ -6,7 +6,7 @@ public class ui {
     public static void main(String[] args) {
         boolean login = true;
         boolean exit = false;
-        boolean isaccount = true;
+        boolean isaccount = false;
         int balance = 1000000;
         String account = "1234-1234-1234";
         Scanner sc = new Scanner(System.in);
@@ -29,10 +29,10 @@ public class ui {
                 System.out.println("0. 로그아웃");
                 System.out.println("1. 계정 정보 수정");
                 System.out.println("2. 거래소 이동하기");
-                int input = sc.nextInt();
                 if(isaccount){
-                    System.out.printf("로그인한 계좌 번호 : %s, 잔액 : %s\n", account, balance);
                     System.out.println("3. 종료");
+                    System.out.printf("로그인한 계좌 번호 : %s, 잔액 : %s\n", account, balance);
+                    int input = sc.nextInt();
                     switch (input) {
                         case 0 -> login = false;
                         case 1 -> System.out.println("계정 정보 수정");
@@ -43,8 +43,9 @@ public class ui {
                 }else{
                     System.out.println("3. 계좌 개설");
                     System.out.println("4. 종료");
+                    int input = sc.nextInt();
                     switch (input) {
-                        case 0 -> login = false;
+                        case 0 -> login = true;
                         case 1 -> System.out.println("계정 정보 수정");
                         case 2 -> System.out.println("거래소 이동하기");
                         case 3 -> System.out.println("계좌 개설");
