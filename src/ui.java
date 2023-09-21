@@ -1,12 +1,13 @@
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Random;
 
 
 public class ui {
@@ -21,11 +22,11 @@ public class ui {
         return err;
     }
     public static void main(String[] args) throws IOException {
-        boolean login = false;
+        boolean login = true;
         boolean exit = false;
         String email = "test@artsnoa.com";
         String password = "1234";
-        boolean isaccount = false;
+        boolean isaccount = true;
         int balance = 1000000;
         String account = "1234-1234-1234";
         Scanner sc = new Scanner(System.in);
@@ -64,7 +65,6 @@ public class ui {
                             upassword = list.get(0).split("\\^")[1];
                             fileStream.close();
                         } catch (IOException e) {
-                            e.printStackTrace();
                             System.out.println("회원가입에 사용한 email을 찾을 수 없습니다.");
                         }
                         System.out.println("password를 입력해주세요!");
@@ -111,6 +111,8 @@ public class ui {
                                 System.out.println("계좌를 개설해주세요!");
                                 break;
                             }else {
+                                stock_Trade_news();
+                                System.out.println("------------------------------");
                                 System.out.println("거래할 종목을 입력해주세요!");
                                 System.out.println("1. 사성전자(sasung.com)");
                                 System.out.println("2. 아이플(iapple.com");
@@ -165,11 +167,49 @@ public class ui {
                     System.out.printf("로그인한 계좌 번호 : %s, 잔액 : %s\n", account, balance);
                     int input = sc.nextInt();
                     switch (input) {
-                        case 0 -> login = false;
-                        case 1 -> System.out.println("계정 정보 수정");
-                        case 2 -> System.out.println("거래소 이동하기");
-                        case 3 -> exit = true;
-                        default -> System.out.println("잘못된 입력입니다.");
+                        case 0:
+                            login = false;
+                            break;
+                        case 1:
+                            System.out.println("계정 정보 수정");
+                            break;
+                        case 2:
+                            System.out.println("거래소 이동하기");
+                            System.out.println("--------------거래소--------------");
+                            if(!login){
+                                System.out.println("로그인 후 이용해주세요!");
+                                break;
+                            }else{
+                                if(!isaccount){
+                                    System.out.println("계좌를 개설해주세요!");
+                                    break;
+                                }else {
+                                    String ups = stock_Trade_news();
+                                    String trade_stock = ups.split("\\^")[0];
+                                    String trade_level = ups.split("\\^")[1];
+//                                    System.out.println(trade_stock);
+//                                    System.out.println(trade_level);
+//                                   level - 0 = 상승, 1 하락 ( 2배 처리
+//                                   추후 구현 ( 업데이트 )
+//                                   )
+                                    System.out.println("거래할 종목을 입력해주세요!");
+                                    System.out.println("1. 사성전자(sasung.com) |" + get_price(1));
+                                    System.out.println("2. 아이플(iapple.com |" + get_price(2));
+                                    System.out.println("3. 인텐그룹(inten.com |" + get_price(3));
+                                    System.out.println("4. 구골(gooogle.com |" + get_price(4));
+                                    System.out.println("5. 설탕그룹(SugarGroup) |" + get_price(5));
+                                    System.out.println("7. 빌그레 그룹(BillGates) |" + get_price(6));
+                                    System.out.println("8. 에이플 닷컴(Aplus.com |" + get_price(7));
+                                    System.out.println("9. 치킨닷컴(Cheekin.com) |" + get_price(8));
+                                    System.out.println("10. 옥베이(oKBay) |" + get_price(9));
+                                    String user_trade = sc.next();
+                                }
+                            }
+                        case 3:
+                            exit = true;
+                            break;
+                        default:
+                            System.out.println("잘못된 입력입니다.");
                     }
                 }else{
                     System.out.println("3. 계좌 개설");
@@ -186,6 +226,77 @@ public class ui {
                 }
             }
         } while (!exit);
+    }
+    private static Integer get_price(int stock_number) {
+        try {
+            FileInputStream fileStream = null;
+            fileStream = new FileInputStream("C:\\Users\\starl\\IdeaProjects\\Jvc_JavaStock\\src\\stock_price\\default.txt");
+            byte[] readBuffer = new byte[fileStream.available()];
+            ArrayList<String> list = new ArrayList<>();
+            while (fileStream.read(readBuffer) != -1) {
+            }
+            list.add(new String(readBuffer));
+//            int gds = list.get(0).split("\\^")[0];
+            int price = Integer.parseInt(list.get(0).split("\\^")[stock_number]);
+            fileStream.close();
+            return price;
+        } catch (IOException e) {
+            System.out.println("오류! 402 : 해당 종목명을 불러오는데 실패했습니다!");
+        }
+        return null;
+    }
+    private static String stock_Trade_news() {
+        Random random = new Random();
+        random.setSeed(System.currentTimeMillis());
+        int odin = random.nextInt(2);
+        if(odin == 0) {
+            try {
+                FileInputStream fileStream = null;
+                fileStream = new FileInputStream("C:\\Users\\starl\\IdeaProjects\\Jvc_JavaStock\\src\\news\\up.txt");
+                byte[] readBuffer = new byte[fileStream.available()];
+                ArrayList<String> list = new ArrayList<>();
+                while (fileStream.read(readBuffer) != -1) {
+                }
+                list.add(new String(readBuffer));
+                String aps = list.get(0).split("\\^")[0];
+                fileStream.close();
+                ArrayList lists = new ArrayList();
+                String str = "사성전자, 아이플, 인텐그룹, 구골, 설탕그룹, 빌그레 그룹, 에이플 닷컴, 치킨닷컴, 옥베이";
+                ArrayList<String> stocks = new ArrayList<>(Arrays.asList(str.split("\\s*,\\s*")));
+                random.setSeed(System.currentTimeMillis());
+                int length = stocks.size();
+                int rdx = random.nextInt(length);
+                System.out.printf("[트레이드 뉴스] : %s %s\n", stocks.get(rdx), aps);
+                String return_method = stocks.get(rdx) + "^" + odin;
+                return return_method;
+            } catch (IOException e) {
+                System.out.println("------------------------------");
+            }
+        }else {
+            try {
+                FileInputStream fileStream = null;
+                fileStream = new FileInputStream("C:\\Users\\starl\\IdeaProjects\\Jvc_JavaStock\\src\\news\\down.txt");
+                byte[] readBuffer = new byte[fileStream.available()];
+                ArrayList<String> list = new ArrayList<>();
+                while (fileStream.read(readBuffer) != -1) {
+                }
+                list.add(new String(readBuffer));
+                String aps = list.get(0).split("\\^")[0];
+                fileStream.close();
+                ArrayList lists = new ArrayList();
+                String str = "사성전자, 아이플, 인텐그룹, 구골, 설탕그룹, 빌그레 그룹, 에이플 닷컴, 치킨닷컴, 옥베이";
+                ArrayList<String> stocks = new ArrayList<>(Arrays.asList(str.split("\\s*,\\s*")));
+                random.setSeed(System.currentTimeMillis());
+                int length = stocks.size();
+                int rdx = random.nextInt(length);
+                System.out.printf("[트레이드 뉴스] : %s %s\n", stocks.get(rdx), aps);
+                String return_method = stocks.get(rdx) + "^" + odin;
+                return return_method;
+            } catch (IOException e) {
+                System.out.println("------------------------------");
+            }
+        }
+        return null;
     }
 }
 
