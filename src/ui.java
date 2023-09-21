@@ -20,7 +20,6 @@ public class ui {
         }
         return err;
     }
-
     public static void main(String[] args) throws IOException {
         boolean login = false;
         boolean exit = false;
@@ -103,6 +102,28 @@ public class ui {
                         break;
                     case 2:
                         System.out.println("거래소 이동하기");
+                        System.out.println("--------------거래소--------------");
+                        if(!login){
+                            System.out.println("로그인 후 이용해주세요!");
+                            break;
+                        }else{
+                            if(!isaccount){
+                                System.out.println("계좌를 개설해주세요!");
+                                break;
+                            }else {
+                                System.out.println("거래할 종목을 입력해주세요!");
+                                System.out.println("1. 사성전자(sasung.com)");
+                                System.out.println("2. 아이플(iapple.com");
+                                System.out.println("3. 인텐그룹(inten.com");
+                                System.out.println("4. 구골(gooogle.com");
+                                System.out.println("5. 설탕그룹(SugarGroup)");
+                                System.out.println("7. 빌그레 그룹(BillGates)");
+                                System.out.println("8. 에이플 닷컴(Aplus.com");
+                                System.out.println("9. 치킨닷컴(Cheekin.com)");
+                                System.out.println("10. 옥베이(oKBay)");
+                                String user_trade = sc.next();
+                            }
+                        }
                         break;
                     case 3:
                         exit = true;
