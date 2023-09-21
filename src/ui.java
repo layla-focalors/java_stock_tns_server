@@ -30,7 +30,7 @@ public class ui {
         boolean exit = false;
         String email = "test@artsnoa.com";
         String password = "1234";
-        boolean isaccount = true;
+        boolean isaccount = false;
         int balance = 1000000;
         String account = "1234-1234-1234";
         Scanner sc = new Scanner(System.in);
@@ -773,10 +773,27 @@ public class ui {
                     System.out.println("4. 종료");
                     int input = sc.nextInt();
                     switch (input) {
-                        case 0 -> login = false;
-                        case 1 -> System.out.println("계정 정보 수정");
-                        case 2 -> System.out.println("거래소 이동하기");
-                        case 3 -> System.out.println("계좌 개설");
+                        case 0 -> {
+                            login = false;
+                            break;
+                        }
+                        case 1 -> {
+                            System.out.println("계정 정보 수정");
+                            break;
+                        }
+                        case 2 -> {
+                            if(!isaccount){
+                                System.out.println("계좌 개설 후 다시 시도해주세요!");
+                            }
+                        }
+                        case 3 -> {
+                            System.out.println("계좌 개설");
+//                            sc.next
+                            String gen_account_id = "";
+                            System.out.printf("자동 생성된 계좌 번호! : %s", gen_account_id);
+
+                            break;
+                        }
                         case 4 -> exit = true;
                         default -> System.out.println("잘못된 입력입니다.");
                     }
