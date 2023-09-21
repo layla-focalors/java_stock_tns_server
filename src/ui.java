@@ -198,11 +198,99 @@ public class ui {
                                     System.out.println("3. 인텐그룹(inten.com |" + get_price(3));
                                     System.out.println("4. 구골(gooogle.com |" + get_price(4));
                                     System.out.println("5. 설탕그룹(SugarGroup) |" + get_price(5));
-                                    System.out.println("7. 빌그레 그룹(BillGates) |" + get_price(6));
-                                    System.out.println("8. 에이플 닷컴(Aplus.com |" + get_price(7));
-                                    System.out.println("9. 치킨닷컴(Cheekin.com) |" + get_price(8));
-                                    System.out.println("10. 옥베이(oKBay) |" + get_price(9));
-                                    String user_trade = sc.next();
+                                    System.out.println("6. 빌그레 그룹(BillGates) |" + get_price(6));
+                                    System.out.println("7. 에이플 닷컴(Aplus.com |" + get_price(7));
+                                    System.out.println("8. 치킨닷컴(Cheekin.com) |" + get_price(8));
+                                    System.out.println("9. 옥베이(oKBay) |" + get_price(9));
+                                    int user_trade = Integer.parseInt(sc.next());
+                                    switch (user_trade){
+                                        case 1:
+                                            boolean isexit = false;
+                                            do{
+                                                int issasung = 3;
+//                                            파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
+                                                System.out.println("사성전자 거래창");
+                                                System.out.println("사성전자 현재가 : " + get_price(1));
+                                                if(issasung > 0){
+                                                    System.out.println("사성전자 잔고 : " + (get_price(1) * issasung));
+                                                }
+                                                System.out.println("계좌 잔고 : " + balance);
+                                                System.out.println("원하는 옵션을 선택해주세요!");
+                                                System.out.println("1. 매수");
+                                                System.out.println("2. 매도");
+                                                System.out.println("3. 거래소로 돌아가기");
+                                                int user_trade_option = sc.nextInt();
+                                                switch (user_trade_option) {
+                                                    case 1 -> {
+                                                        System.out.println("----------------------------------------");
+                                                        System.out.println("매수할 수량을 입력해주세요!");
+                                                        int user_trade_amount = sc.nextInt();
+                                                        System.out.println("매수 주문 : 사성전자 " + user_trade_amount + "주" + ", 예상금액 : " + (get_price(1) * user_trade_amount));
+                                                        int total_price = get_price(1) * user_trade_amount;
+                                                        if (total_price >= balance) {
+                                                            System.out.println("잔액이 부족합니다!");
+                                                        } else {
+                                                            System.out.println("----------------------------------------");
+                                                            System.out.println("매수 주문이 완료되었습니다!");
+                                                            balance -= total_price;
+                                                            issasung += user_trade_amount;
+                                                            System.out.println("사성전자 잔고 : " + (get_price(1) * issasung));
+                                                            System.out.println("계좌 잔고 : " + balance);
+                                                        }
+                                                    }
+                                                    case 2 -> {
+                                                        System.out.println("----------------------------------------");
+                                                        System.out.println("매도할 수량을 입력해주세요!");
+                                                        int user_trade_amount2 = sc.nextInt();
+                                                        System.out.println("매도 주문 : 사성전자 " + user_trade_amount2 + "주" + ", 예상금액 : " + (get_price(1) * user_trade_amount2));
+                                                        int total_price2 = get_price(1) * user_trade_amount2;
+                                                        if (user_trade_amount2 >= issasung) {
+                                                            System.out.println("매도하려는 수량이 보유 수량보다 많습니다!");
+                                                        } else {
+                                                            System.out.println("----------------------------------------");
+                                                            System.out.println("매도 주문이 완료되었습니다!");
+                                                            balance += total_price2;
+                                                            issasung -= user_trade_amount2;
+                                                            System.out.println("사성전자 잔고 : " + get_price(1) * issasung);
+                                                            System.out.println("계좌 잔고 : " + balance);
+                                                        }
+                                                    }
+                                                    case 3 -> {
+                                                        System.out.println("거래소로 돌아가기");
+                                                        isexit = false;
+                                                    }
+                                                    default -> System.out.println("잘못된 입력입니다!");
+                                                }
+                                            }while (!isexit);
+
+                                        case 2:
+                                            System.out.println("아이플 거래창");
+                                            break;
+                                        case 3:
+                                            System.out.println("인텐그룹 거래창");
+                                            break;
+                                        case 4:
+                                            System.out.println("구골 거래창");
+                                            break;
+                                        case 5:
+                                            System.out.println("설탕그룹 거래창");
+                                            break;
+                                        case 6:
+                                            System.out.println("빌그레 그룹 거래창");
+                                            break;
+                                        case 7:
+                                            System.out.println("에이플 닷컴 거래창");
+                                            break;
+                                        case 8:
+                                            System.out.println("치킨닷컴 거래창");
+                                            break;
+                                        case 9:
+                                            System.out.println("옥베이 거래창");
+                                            break;
+                                        default:
+                                            System.out.println("잘못된 종목입니다!");
+                                            break;
+                                    }
                                 }
                             }
                         case 3:
