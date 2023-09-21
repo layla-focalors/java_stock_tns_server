@@ -30,7 +30,7 @@ public class ui {
         boolean exit = false;
         String email = "test@artsnoa.com";
         String password = "1234";
-        boolean isaccount = false;
+        boolean isaccount = true;
         int balance = 1000000;
         String account = "1234-1234-1234";
         Scanner sc = new Scanner(System.in);
@@ -789,6 +789,8 @@ public class ui {
                         case 3 -> {
                             System.out.println("계좌 개설");
 //                            sc.next
+                            System.out.println("계좌 개설을 위해 필요한 정보를 입력해주세요!");
+                            sc.next();
                             String gen_account_id = "";
                             System.out.printf("자동 생성된 계좌 번호! : %s", gen_account_id);
 
