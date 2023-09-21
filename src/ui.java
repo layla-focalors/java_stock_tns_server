@@ -212,9 +212,9 @@ public class ui {
 //                                            파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
                                                 System.out.println("사성전자 거래창");
                                                 System.out.println("사성전자 현재가 : " + get_price(1));
-                                                if(issasung > 0){
-                                                    System.out.println("사성전자 잔고 : " + (get_price(1) * issasung));
-                                                }
+//                                                if(issasung > 0){
+//                                                    System.out.println("사성전자 잔고 : " + (get_price(1) * issasung));
+//                                                }
                                                 System.out.println("계좌 잔고 : " + balance);
                                                 System.out.println("원하는 옵션을 선택해주세요!");
                                                 System.out.println("1. 매수");
@@ -271,9 +271,9 @@ public class ui {
 //                                            파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
                                                 System.out.println("아이플 거래창");
                                                 System.out.println("아이플 현재가 : " + get_price(2));
-                                                if(isiapple > 0){
-                                                    System.out.println("아이플 잔고 : " + (get_price(2) * isiapple));
-                                                }
+//                                                if(isiapple > 0){
+//                                                    System.out.println("아이플 잔고 : " + (get_price(2) * isiapple));
+//                                                }
                                                 System.out.println("계좌 잔고 : " + balance);
                                                 System.out.println("원하는 옵션을 선택해주세요!");
                                                 System.out.println("1. 매수");
@@ -331,9 +331,9 @@ public class ui {
 //                                            파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
                                                 System.out.println("인텐그룹 거래창");
                                                 System.out.println("인텐그룹 현재가 : " + get_price(3));
-                                                if(inten > 0){
-                                                    System.out.println("사성전자 잔고 : " + (get_price(3) * inten));
-                                                }
+//                                                if(inten > 0){
+//                                                    System.out.println("사성전자 잔고 : " + (get_price(3) * inten));
+//                                                }
                                                 System.out.println("계좌 잔고 : " + balance);
                                                 System.out.println("원하는 옵션을 선택해주세요!");
                                                 System.out.println("1. 매수");
@@ -371,6 +371,7 @@ public class ui {
                                                             System.out.println("매도 주문이 완료되었습니다!");
                                                             balance += total_price2;
                                                             input -= user_trade_amount2;
+                                                            inten -= user_trade_amount2;
                                                             System.out.println("인텐그룹 잔고 : " + get_price(3) * inten);
                                                             System.out.println("계좌 잔고 : " + balance);
                                                         }
@@ -392,9 +393,6 @@ public class ui {
 //                                            파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
                                                 System.out.println("구골 거래창");
                                                 System.out.println("구골 현재가 : " + get_price(4));
-                                                if(gooogol > 0){
-                                                    System.out.println("구골 잔고 : " + (get_price(4) * gooogol));
-                                                }
                                                 System.out.println("계좌 잔고 : " + balance);
                                                 System.out.println("원하는 옵션을 선택해주세요!");
                                                 System.out.println("1. 매수");
@@ -407,7 +405,7 @@ public class ui {
                                                         System.out.println("매수할 수량을 입력해주세요!");
                                                         int user_trade_amount = sc.nextInt();
                                                         System.out.println("매수 주문 : 구골 " + user_trade_amount + "주" + ", 예상금액 : " + (get_price(4) * user_trade_amount));
-                                                        int total_price = get_price(3) * user_trade_amount;
+                                                        int total_price = get_price(4) * user_trade_amount;
                                                         if (total_price >= balance) {
                                                             System.out.println("잔액이 부족합니다!");
                                                         } else {
@@ -415,7 +413,7 @@ public class ui {
                                                             System.out.println("매수 주문이 완료되었습니다!");
                                                             balance -= total_price;
                                                             gooogol += user_trade_amount;
-                                                            System.out.println("사성전자 잔고 : " + (get_price(4) * gooogol));
+                                                            System.out.println("구골 잔고 : " + (get_price(4) * gooogol));
                                                             System.out.println("계좌 잔고 : " + balance);
                                                         }
                                                     }
@@ -423,7 +421,7 @@ public class ui {
                                                         System.out.println("----------------------------------------");
                                                         System.out.println("매도할 수량을 입력해주세요!");
                                                         int user_trade_amount2 = sc.nextInt();
-                                                        System.out.println("매도 주문 : 인텐그룹 " + user_trade_amount2 + "주" + ", 예상금액 : " + (get_price(4) * user_trade_amount2));
+                                                        System.out.println("매도 주문 : 구골 " + user_trade_amount2 + "주" + ", 예상금액 : " + (get_price(4) * user_trade_amount2));
                                                         int total_price2 = get_price(4) * user_trade_amount2;
                                                         if (user_trade_amount2 >= gooogol) {
                                                             System.out.println("매도하려는 수량이 보유 수량보다 많습니다!");
@@ -432,7 +430,8 @@ public class ui {
                                                             System.out.println("매도 주문이 완료되었습니다!");
                                                             balance += total_price2;
                                                             input -= user_trade_amount2;
-                                                            System.out.println("인텐그룹 잔고 : " + get_price(4) * gooogol);
+                                                            gooogol -= user_trade_amount2;
+                                                            System.out.println("구골그룹 잔고 : " + get_price(4) * gooogol);
                                                             System.out.println("계좌 잔고 : " + balance);
                                                         }
                                                     }
@@ -452,9 +451,9 @@ public class ui {
         //                                    파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
                                                 System.out.println("설탕그룹 거래창");
                                                 System.out.println("설탕그룹 현재가 : " + get_price(5));
-                                                if(sugar > 0){
-                                                    System.out.println("설탕그룹 잔고 : " + (get_price(5) * sugar));
-                                                }
+//                                                if(sugar > 0){
+//                                                    System.out.println("설탕그룹 잔고 : " + (get_price(5) * sugar));
+//                                                }
                                                 System.out.println("계좌 잔고 : " + balance);
                                                 System.out.println("원하는 옵션을 선택해주세요!");
                                                 System.out.println("1. 매수");
@@ -492,7 +491,8 @@ public class ui {
                                                             System.out.println("매도 주문이 완료되었습니다!");
                                                             balance += total_price2;
                                                             input -= user_trade_amount2;
-                                                            System.out.println("인텐그룹 잔고 : " + get_price(5) * sugar);
+                                                            sugar -= user_trade_amount2;
+                                                            System.out.println("설탕그룹 잔고 : " + get_price(5) * sugar);
                                                             System.out.println("계좌 잔고 : " + balance);
                                                         }
                                                     }
@@ -505,7 +505,6 @@ public class ui {
                                             }while (!isexit);
                                             break;
                                         case 6:
-                                            System.out.println("빌그레 그룹 거래창");
                                             isexit = false;
                                             do{
                                                 int billgre = 3;
@@ -513,9 +512,9 @@ public class ui {
 //                                            파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
                                                 System.out.println("빌그레 그룹 거래창");
                                                 System.out.println("빌그레 그룹 현재가 : " + get_price(6));
-                                                if(billgre > 0){
-                                                    System.out.println("사성전자 잔고 : " + (get_price(6) * billgre));
-                                                }
+//                                                if(billgre > 0){
+//                                                    System.out.println("사성전자 잔고 : " + (get_price(6) * billgre));
+//                                                }
                                                 System.out.println("계좌 잔고 : " + balance);
                                                 System.out.println("원하는 옵션을 선택해주세요!");
                                                 System.out.println("1. 매수");
@@ -528,7 +527,7 @@ public class ui {
                                                         System.out.println("매수할 수량을 입력해주세요!");
                                                         int user_trade_amount = sc.nextInt();
                                                         System.out.println("매수 주문 : 빌그레 그룹 " + user_trade_amount + "주" + ", 예상금액 : " + (get_price(6) * user_trade_amount));
-                                                        int total_price = get_price(3) * user_trade_amount;
+                                                        int total_price = get_price(6) * user_trade_amount;
                                                         if (total_price >= balance) {
                                                             System.out.println("잔액이 부족합니다!");
                                                         } else {
@@ -536,7 +535,7 @@ public class ui {
                                                             System.out.println("매수 주문이 완료되었습니다!");
                                                             balance -= total_price;
                                                             billgre += user_trade_amount;
-                                                            System.out.println("빌그레 그룹 잔고 : " + (get_price(3) * billgre));
+                                                            System.out.println("빌그레 그룹 잔고 : " + (get_price(6) * billgre));
                                                             System.out.println("계좌 잔고 : " + balance);
                                                         }
                                                     }
@@ -545,7 +544,7 @@ public class ui {
                                                         System.out.println("매도할 수량을 입력해주세요!");
                                                         int user_trade_amount2 = sc.nextInt();
                                                         System.out.println("매도 주문 : 빌그레 그룹 " + user_trade_amount2 + "주" + ", 예상금액 : " + (get_price(6) * user_trade_amount2));
-                                                        int total_price2 = get_price(3) * user_trade_amount2;
+                                                        int total_price2 = get_price(6) * user_trade_amount2;
                                                         if (user_trade_amount2 >= billgre) {
                                                             System.out.println("매도하려는 수량이 보유 수량보다 많습니다!");
                                                         } else {
@@ -553,6 +552,7 @@ public class ui {
                                                             System.out.println("매도 주문이 완료되었습니다!");
                                                             balance += total_price2;
                                                             input -= user_trade_amount2;
+                                                            billgre -= user_trade_amount2;
                                                             System.out.println("빌그레 그룹 잔고 : " + get_price(6) * billgre);
                                                             System.out.println("계좌 잔고 : " + balance);
                                                         }
@@ -573,9 +573,9 @@ public class ui {
 //                                            파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
                                                 System.out.println("에이플 닷컴 거래창");
                                                 System.out.println("에이플 닷컴 현재가 : " + get_price(7));
-                                                if(aplus > 0){
-                                                    System.out.println("에이플 닷컴 잔고 : " + (get_price(7) * aplus));
-                                                }
+//                                                if(aplus > 0){
+//                                                    System.out.println("에이플 닷컴 잔고 : " + (get_price(7) * aplus));
+//                                                }
                                                 System.out.println("계좌 잔고 : " + balance);
                                                 System.out.println("원하는 옵션을 선택해주세요!");
                                                 System.out.println("1. 매수");
@@ -605,7 +605,7 @@ public class ui {
                                                         System.out.println("매도할 수량을 입력해주세요!");
                                                         int user_trade_amount2 = sc.nextInt();
                                                         System.out.println("매도 주문 : 에이플 닷컴 " + user_trade_amount2 + "주" + ", 예상금액 : " + (get_price(7) * user_trade_amount2));
-                                                        int total_price2 = get_price(3) * user_trade_amount2;
+                                                        int total_price2 = get_price(7) * user_trade_amount2;
                                                         if (user_trade_amount2 >= aplus) {
                                                             System.out.println("매도하려는 수량이 보유 수량보다 많습니다!");
                                                         } else {
@@ -613,6 +613,7 @@ public class ui {
                                                             System.out.println("매도 주문이 완료되었습니다!");
                                                             balance += total_price2;
                                                             input -= user_trade_amount2;
+                                                            aplus -= user_trade_amount2;
                                                             System.out.println("에이플 닷컴 잔고 : " + get_price(7) * aplus);
                                                             System.out.println("계좌 잔고 : " + balance);
                                                         }
@@ -633,9 +634,9 @@ public class ui {
 //                                            파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
                                                 System.out.println("치킨닷컴 거래창");
                                                 System.out.println("치킨닷컴 현재가 : " + get_price(8));
-                                                if(cheeken > 0){
-                                                    System.out.println("사성전자 잔고 : " + (get_price(8) * cheeken));
-                                                }
+//                                                if(cheeken > 0){
+//                                                    System.out.println("사성전자 잔고 : " + (get_price(8) * cheeken));
+//                                                }
                                                 System.out.println("계좌 잔고 : " + balance);
                                                 System.out.println("원하는 옵션을 선택해주세요!");
                                                 System.out.println("1. 매수");
@@ -673,6 +674,7 @@ public class ui {
                                                             System.out.println("매도 주문이 완료되었습니다!");
                                                             balance += total_price2;
                                                             input -= user_trade_amount2;
+                                                            cheeken -= user_trade_amount2;
                                                             System.out.println("치킨닷컴 잔고 : " + get_price(8) * cheeken);
                                                             System.out.println("계좌 잔고 : " + balance);
                                                         }
@@ -693,9 +695,9 @@ public class ui {
 //                                            파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
                                                 System.out.println("옥베이 거래창");
                                                 System.out.println("옥베이 현재가 : " + get_price(9));
-                                                if(okbay > 0){
-                                                    System.out.println("사성전자 잔고 : " + (get_price(9) * okbay));
-                                                }
+//                                                if(okbay > 0){
+//                                                    System.out.println("사성전자 잔고 : " + (get_price(9) * okbay));
+//                                                }
                                                 System.out.println("계좌 잔고 : " + balance);
                                                 System.out.println("원하는 옵션을 선택해주세요!");
                                                 System.out.println("1. 매수");
@@ -716,7 +718,7 @@ public class ui {
                                                             System.out.println("매수 주문이 완료되었습니다!");
                                                             balance -= total_price;
                                                             okbay += user_trade_amount;
-                                                            System.out.println("사성전자 잔고 : " + (get_price(9) * okbay));
+                                                            System.out.println("옥베이 잔고 : " + (get_price(9) * okbay));
                                                             System.out.println("계좌 잔고 : " + balance);
                                                         }
                                                     }
@@ -733,6 +735,7 @@ public class ui {
                                                             System.out.println("매도 주문이 완료되었습니다!");
                                                             balance += total_price2;
                                                             input -= user_trade_amount2;
+                                                            okbay -= user_trade_amount2;
                                                             System.out.println("인텐그룹 잔고 : " + get_price(9) * okbay);
                                                             System.out.println("계좌 잔고 : " + balance);
                                                         }
@@ -772,6 +775,28 @@ public class ui {
                 }
             }
         } while (!exit);
+    }
+    private static Integer balce_update(int stock_number, int balance){
+        System.out.println("LIFESE");
+//        balance.txt 업데이트 파일
+        return null;
+    }
+    private static Integer get_balance(int stock_number) {
+        try {
+            FileInputStream fileStream = null;
+            fileStream = new FileInputStream("C:\\Users\\starl\\IdeaProjects\\Jvc_JavaStock\\src\\stock_balance\\blance.txt");
+            byte[] readBuffer = new byte[fileStream.available()];
+            ArrayList<String> miv = new ArrayList<>();
+            while (fileStream.read(readBuffer) != -1) {
+            }
+            miv.add(new String(readBuffer));
+            Integer stock_price = Integer.valueOf(miv.get(0).split("\\^")[stock_number]);
+            fileStream.close();
+            return stock_price;
+        } catch (IOException e) {
+            System.out.println("ERROR 712: 오류가 발생했습니다!");
+        }
+        return null;
     }
     private static Integer get_price(int stock_number) {
 //        1회만 읽고 나머지는 random, if문 사용 1회 리드 후 2회차부터는 자동으로 업데이트 후 반환
