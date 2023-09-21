@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Random;
+import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 
 public class ui {
@@ -748,6 +752,10 @@ public class ui {
                                                 }
                                             }while (!isexit);
                                             break;
+                                        case 10:
+                                            System.out.println("DEBUG MODE");
+                                            balce_update(1, 1, 1);
+                                            break;
                                         default:
                                             System.out.println("잘못된 종목입니다!");
                                             break;
@@ -776,8 +784,33 @@ public class ui {
             }
         } while (!exit);
     }
-    private static Integer balce_update(int stock_number, int balance){
-        System.out.println("LIFESE");
+    private static Integer balce_update(int stock_number, int balance, int gradkle){
+        try {
+//            주식 번호, 변경점, + / - 여부
+            FileInputStream fileStream = null;
+            fileStream = new FileInputStream("C:\\Users\\starl\\IdeaProjects\\Jvc_JavaStock\\src\\stock_balance\\blance.txt");
+            byte[] readBuffer = new byte[fileStream.available()];
+            ArrayList<String> miv = new ArrayList<>();
+            while (fileStream.read(readBuffer) != -1) {
+            }
+            miv.add(new String(readBuffer));
+            fileStream.close();
+            String output = miv.get(0);
+            System.out.println(output);
+            String write_streamA = "0^0^0^0^0^0^0^0^0";
+
+
+//            for 문으로 반복해서 뜯은 다음 붙이거나 물리적으로 처리
+//            ^ 기준으로 분해하고 스톡 업데이트
+
+            File file = new File("C:\\Users\\starl\\IdeaProjects\\Jvc_JavaStock\\src\\stock_balance\\blance.txt");
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter writer = new BufferedWriter(fw);
+            writer.write(write_streamA);
+            writer.close();
+        } catch (IOException e){
+            System.out.println("error 81812");
+        }
 //        balance.txt 업데이트 파일
         return null;
     }
