@@ -796,9 +796,25 @@ public class ui {
             miv.add(new String(readBuffer));
             fileStream.close();
             String output = miv.get(0);
-            System.out.println(output);
-            String write_streamA = "0^0^0^0^0^0^0^0^0";
+//            System.out.println(output);
+            String[] output_split = output.split("\\^");
+//            System.out.println(output_split[1]);
+            if(gradkle == 0) {
+                output_split[stock_number] = String.valueOf(Integer.parseInt(output_split[stock_number]) + balance);
+            }
+            else{
+                if(Integer.parseInt(output_split[stock_number]) == 0){
+                    System.out.println("주식 잔고는 -가 될 수 없습니다!");
+                    return null;
+                }
+                else{
+                    output_split[stock_number] = String.valueOf(Integer.parseInt(output_split[stock_number]) - balance);
+                }
+                output_split[stock_number] = String.valueOf(Integer.parseInt(output_split[stock_number]) - balance);
+            }
+            String write_streamA = output_split[0] + "^" + output_split[1] + "^" + output_split[2] + "^" + output_split[3] + "^" + output_split[4] + "^" + output_split[5] + "^" + output_split[6] + "^" + output_split[7] + "^" + output_split[8];
 
+            System.out.println("updated balance");
 
 //            for 문으로 반복해서 뜯은 다음 붙이거나 물리적으로 처리
 //            ^ 기준으로 분해하고 스톡 업데이트
