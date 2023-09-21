@@ -208,6 +208,7 @@ public class ui {
                                             boolean isexit = false;
                                             do{
                                                 int issasung = 3;
+                                                System.out.println("----------------------------------------");
 //                                            파일에 종목별로 기록함! 0은 없음 ! 1은 거래수량
                                                 System.out.println("사성전자 거래창");
                                                 System.out.println("사성전자 현재가 : " + get_price(1));
